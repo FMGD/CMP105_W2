@@ -25,5 +25,15 @@ private:
 	Input* input;
 
 	// Add your object here
+	sf::Font font;
+	sf::Text mouse_position_txt;
 
+	int mouseX_position_ini = -1;
+	int mouseY_position_ini = -1;
+
+	int mouseX_position_fin;
+	int mouseY_position_fin;
+
+	bool measuring = false;
+	float d = 0;
 };
