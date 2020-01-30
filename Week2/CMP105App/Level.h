@@ -28,12 +28,18 @@ private:
 	sf::Font font;
 	sf::Text mouse_position_txt;
 
-	int mouseX_position_ini = -1;
-	int mouseY_position_ini = -1;
+	//Dragging
+	int mouseX_position_ini = 0;
+	int mouseY_position_ini = 0;
 
-	int mouseX_position_fin;
-	int mouseY_position_fin;
+	int mouseX_position_fin = 0;
+	int mouseY_position_fin = 0;
 
 	bool measuring = false;
 	float d = 0;
+
+	//Circle
+	sf::CircleShape circleShape;
+	bool mouseRClicked = false;
+
 };

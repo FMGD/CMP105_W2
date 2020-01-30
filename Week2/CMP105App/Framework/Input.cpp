@@ -1,5 +1,8 @@
 #include "Input.h"
-
+ Input::Input() {
+	 mouse.left = false; 
+	 mouse.right = false;
+}
 void Input::setKeyDown(int key)
 {
 	if (key >= 0)

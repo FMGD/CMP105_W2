@@ -20,6 +20,7 @@ public:
 	void setKeyDown(int key);
 	void setKeyUp(int key);
 	bool isKeyDown(int key);
+	 Input();
 
 	// Functions are mouse input, including getting and setting current position and mouse button presses.
 	void setMouseX(int lx);

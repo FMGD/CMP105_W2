@@ -19,6 +19,13 @@ Level::Level(sf::RenderWindow* hwnd, Input* in)
 	mouse_position_txt.setFillColor(sf::Color::Red);
 	mouse_position_txt.setStyle(sf::Text::Bold | sf::Text::Underlined);
 
+	//Circle
+	circleShape.setRadius(150);
+	circleShape.setOrigin(150,150);
+	circleShape.setFillColor(sf::Color::Blue);
+	circleShape.setOutlineColor(sf::Color::Green);
+	circleShape.setOutlineThickness(5);
+
 }
 
 Level::~Level()
@@ -52,22 +59,31 @@ void Level::handleInput()
 		std::cout << "'J', 'K' and 'L' were pressed\n";
 	}
 	//CheckMouseDrag();
-	if (input->isMouseLDown() && !measuring)
+	if (input->isMouseLDown() && !measuring) //If the user has started to dragging
 	{
 		mouseX_position_ini = input->getMouseX();
 		mouseY_position_ini = input->getMouseY();
 		measuring = true;
 	}
-	else if( !input->isMouseLDown() && measuring )
+	else if( !input->isMouseLDown() && measuring ) //If the user has stopped of dragging
 	{
 		mouseX_position_fin = input->getMouseX();
 		mouseY_position_fin = input->getMouseY();
 
 		//Following pitagoras
 		d = sqrt( pow(mouseX_position_fin - mouseX_position_ini, 2) + pow(mouseY_position_fin - mouseY_position_ini, 2) );
-		std::cout << "Distance of the drag: " + std::to_string(d) + "\n";
+		
+		if(d > 0) std::cout << "Distance of the drag: " + std::to_string(d) + "\n";
 
 		measuring = false;
+	}
+
+	//If the user click on right mouse button
+	if (input->isMouseRDown())
+	{
+		//Setting the position of the circle with the currently position of the mouse
+		circleShape.setPosition(input->getMouseX(), input->getMouseY());
+		mouseRClicked = true;
 	}
 
 }
@@ -86,6 +102,8 @@ void Level::render()
 	beginDraw();
 
 	window->draw(mouse_position_txt);
+
+	if(mouseRClicked == true) window->draw(circleShape);
 
 	endDraw();
 }
